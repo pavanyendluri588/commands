@@ -1,0 +1,16 @@
+ls -Z /var/www
+ps -ZC httpd
+getenforce
+setenforce 0
+usage:  setenforce [ Enforcing | Permissive | 1 | 0 ]
+setenforce Enforcing
+/etc/selinux/config
+
+Changing the SELinux context of a file
+chcon -t httpd_sys_content_t /virtual
+restorecon -v /virtual
+getsebool -a
+getsebool httpd_enable_homedirs
+setsebool httpd_enable_homedirs on
+sudo semanage boolean -l | grep httpd_enable_homedirs
+setsebool -P httpd_enable_homedirs on

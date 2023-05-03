@@ -1,0 +1,24 @@
+firewall-cmd --reload
+--get-default-zone	
+--set-default-zone=ZONE	
+--get-zones	
+--add-source=CIDR [--zone=ZONE]	
+--remove-source=CIDR [--zone=ZONE]	
+--add-interface=INTERFACE [--zone=ZONE]	
+--add-interface=INTERFACE [--zone=ZONE]	
+--change-interface=INTERFACE [--zone=ZONE]	
+--list-all [--zone=ZONE]	
+--list-all-zones	
+--add-service=SERVICE [--zone=ZONE]	
+--add-port=PORT/PROTOCOL [--zone=ZONE]	
+--remove-service=SERVICE [--zone=ZONE]	
+--remove-port=PORT/PROTOCOL [--zone=ZONE]	
+firewall-cmd --permanent --zone=internal --add-source=192.168.0.0/24
+
+semanage port -l
+ semanage port -l | grep ftp
+semanage port -a -t port_label -p tcp|udp PORTNUMBER
+semanage port -a -t gopher_port_t -p tcp 71
+yum -y install selinux-policy-doc
+semanage port -d -t gopher_port_t -p tcp 71
+semanage port -m -t http_port_t -p tcp 71
